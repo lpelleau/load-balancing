@@ -1,0 +1,16 @@
+upstream lb {
+	# round-robin; # default
+	least_conn;
+	# ip-hash;
+	server localhost:3000;
+	server localhost:3001;
+	server localhost:3002;
+}
+
+server {
+	listen 80;
+
+	location / {
+		proxy_pass http://lb;
+	}
+}

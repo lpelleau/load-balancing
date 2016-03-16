@@ -1,0 +1,19 @@
+{
+  "name": "load-balancing",
+  "version": "1.0.0",
+  "description": "Application usefull to test load balancing",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodejs app.js 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Loïc Pelleau <loicpelleau@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "body-parser": "*",
+    "socket.io": "*"
+  }
+}
