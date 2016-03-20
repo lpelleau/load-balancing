@@ -3,12 +3,15 @@ angular.module('lb', [])
     var ctl = this;
     ctl.calls = [];
 
-    function work(size) {
+    function work(s, d) {
       Materialize.toast('Requête envoyée !', 1000);
       $http({
-        method: 'GET', 
-        url: '/work/' + size
-        })
+        method: 'POST', 
+        url: '/work', 
+        data: {
+          size: s, 
+          data: d
+        }})
         .then(function successCallback(res) {
           ctl.calls.push(res.data);
         }, function errorCallback(res) {
@@ -22,6 +25,15 @@ angular.module('lb', [])
 
     ctl.smallWork = function() {
       work(0);
+    };
+    
+    ctl.bigRequest = function() {
+      var someData = "1234567890";
+      var iterations = 8;
+      for (var i = 0; i < iterations; i++) {
+        someData += someData + someData;
+      }
+      work(0, someData);
     };
 
     ctl.clear = function() {

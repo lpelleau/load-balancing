@@ -1,16 +1,31 @@
-upstream lb {
-	# round-robin; # default
-	least_conn;
-	# ip-hash;
-	server localhost:3000;
-	server localhost:3001;
-	server localhost:3002;
+# see https://www.nginx.com/resources/admin-guide/load-balancer/
+
+client_max_body_size 500M;
+
+upstream load-balancing {
+  # Round Robin (default)
+  # least_conn;
+  # ip_hash;
+  # hash $request_uri [consistent];
+  # least_time (header|last_byte);
+
+  ### server parameters ###
+  # weight=8;
+  # backup;
+  # slow_start=10s;
+  # max_conns=3;
+  # max_fails=3;
+  # fails_timeout=30s;
+
+  server localhost:3000;
+  server localhost:3001;
+  server localhost:3002;
 }
 
 server {
-	listen 80;
+  listen 80;
 
-	location / {
-		proxy_pass http://lb;
-	}
+  location / {
+    proxy_pass http://load-balancing;
+  }
 }
