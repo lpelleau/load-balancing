@@ -10,10 +10,11 @@
   "author": "Loïc Pelleau <loicpelleau@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "*",
     "express": "*",
     "jade": "*",
     "mongodb": "*",
-    "body-parser": "*",
+    "morgan": "^1.7.0",
     "socket.io": "*"
   }
 }
