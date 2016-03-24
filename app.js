@@ -5,11 +5,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var http = require('http');
+var morgan = require('morgan');
 
 /**
  * PARAMETERS
  */
 app.set('view engine', 'jade');
+app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 var ID = process.argv[2];
